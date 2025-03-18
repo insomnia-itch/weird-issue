@@ -19,10 +19,10 @@
 
       <div class="form-group mb-3" data-controller="character-counter">
         <%= form.label :body, class: "visually-hidden" %>
-        <%= form.text_area :body, class: "form-control", data: { "character-counter-target": "input" } %>
+        <%= form.text_area :body, class: "form-control", data: { controller: "autosize", "character-counter-target": "input" } %>
         <p>
           There are
-          <strong data-character-counter-target="counter"><%= comment.body.to_s.length %></strong> characters in this textarea.
+          <strong data-character-counter-target="counter"><%= comment.body.to_s.length %></strong> characters in this comment.
         </p>
       </div>
 
