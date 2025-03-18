@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="character-counter"
 export default class extends Controller {
+  static classes = [ "warning" ]
   static targets = [ "input", "counter" ]
   static values = {
     max: { type: Number, default: 200 }
@@ -25,9 +26,9 @@ export default class extends Controller {
     this.counterTarget.innerHTML = number.toString()
 
     if (number > this.maxValue) {
-      this.counterTarget.classList.add("text-danger")
-    } else if (this.counterTarget.classList.contains("text-danger")){
-      this.counterTarget.classList.remove("text-danger")
+      this.counterTarget.classList.add(this.warningClass)
+    } else if (this.counterTarget.classList.contains(this.warningClass)){
+      this.counterTarget.classList.remove(this.warningClass)
     }
   }
 }

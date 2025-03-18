@@ -17,7 +17,7 @@
 
       <%= form.hidden_field :photo_id %>
 
-      <div class="form-group mb-3" data-controller="character-counter">
+      <div class="form-group mb-3" data-controller="character-counter" data-character-counter-warning-class="text-danger">
         <%= form.label :body, class: "visually-hidden" %>
         <%= form.text_area :body, class: "form-control", data: { controller: "autosize", "character-counter-target": "input" } %>
         <p>
