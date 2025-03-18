@@ -9,6 +9,7 @@ export default class extends Controller {
 
   initialize() {
     this.count = this.countCharacters.bind(this)
+    this.count()
   }
 
   connect() {
