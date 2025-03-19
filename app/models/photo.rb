@@ -34,5 +34,5 @@ class Photo < ApplicationRecord
 
   scope :latest, -> { order(created_at: :desc) }
 
-  after_update_commit -> { broadcast_replace_to "photo_#{id}", target: "photo_#{id}", partial: "photos/placeholder", locals: { photo: self} }
+  after_update_commit -> { broadcast_replace_to "photo_#{id}", target: "photo_#{id}", partial: "photos/placeholder", locals: { photo: self } }
 end

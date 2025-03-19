@@ -11,7 +11,7 @@ task sample_data: :environment do
   people = Array.new(10) do
     {
       first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
+      last_name: Faker::Name.last_name
     }
   end
 
@@ -25,7 +25,7 @@ task sample_data: :environment do
     username = person.fetch(:first_name).downcase
     secret = false
 
-    if ["alice", "carol"].include?(username) || User.where(private: true).count <= 6
+    if [ "alice", "carol" ].include?(username) || User.where(private: true).count <= 6
       secret = true
     end
 
