@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0.1"
+gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
@@ -56,10 +56,40 @@ group :development do
   gem "web-console"
 end
 
+# Additional gems for AppDev 2
 gem "devise"
 gem "active_link_to"
+gem "awesome_print"
+gem "dotenv"
 gem "faker"
+gem "htmlbeautifier"
+gem "http"
+gem "table_print"
+gem "simple_form"
 gem "pundit"
 gem "ransack"
 gem "strip_attributes"
 gem "validate_url"
+
+group :development do
+  gem "annotaterb"
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "pry-rails"
+  gem "rails-erd"
+  gem "rufo"
+end
+
+group :development, :test do
+  gem "rspec-rails", "~> 7.0.0"
+  gem "grade_runner", "~> 0.0.13"
+end
+
+group :test do
+  gem "shoulda-matchers", "~> 4.0"
+  gem "rspec-html-matchers"
+  gem "webmock"
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "webdrivers"
+end

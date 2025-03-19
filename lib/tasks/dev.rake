@@ -18,7 +18,8 @@ task sample_data: :environment do
   people << { first_name: "Alice", last_name: "Smith" }
   people << { first_name: "Bob", last_name: "Smith" }
   people << { first_name: "Carol", last_name: "Smith" }
-  people << { first_name: "Doug", last_name: "Smith" }
+  people << { first_name: "Dave", last_name: "Smith" }
+  people << { first_name: "Eve", last_name: "Smith" }
 
   people.each do |person|
     username = person.fetch(:first_name).downcase
