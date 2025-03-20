@@ -88,7 +88,7 @@
           <%= form_with(model: follow_request) do |form| %>
             <%= form.hidden_field :status %>
 
-            <%= form.submit "Accept follow request", class: "btn btn-outline-success btn-block mb-3" %>
+            <%= form.submit "Accept #{@user.username}'s request", class: "btn btn-outline-success btn-block mb-3" %>
           <% end %>
 
           <% follow_request.status = "rejected" %>
@@ -96,7 +96,7 @@
           <%= form_with(model: follow_request) do |form| %>
             <%= form.hidden_field :status %>
 
-            <%= form.submit "Reject follow request", class: "btn btn-outline-danger btn-block mb-3" %>
+            <%= form.submit "Decline #{@user.username}'s request", class: "btn btn-outline-danger btn-block mb-3" %>
           <% end %>
         <% end %>
       </div>
