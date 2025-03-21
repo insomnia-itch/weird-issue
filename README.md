@@ -1,3 +1,3 @@
-# photogram-turbo
+# photogram-stimulus
 
-https://photogram-turbo.matchthetarget.com/
+https://photogram-stimulus.matchthetarget.com/
