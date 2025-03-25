@@ -91,6 +91,6 @@ group :test do
   gem "rails-controller-testing"
   gem "webmock"
   gem "capybara"
+  gem "color_namer"
   gem "selenium-webdriver", "~> 4.11.0"
-  gem "webdrivers"
 end
