@@ -57,7 +57,7 @@ describe "/photos/[ID]" do
 
     computed_color = character_count_element.style("color")["color"]
     red, green, blue = parse_rgba_value(computed_color).map(&:to_i)
-    expect(red).to be > 200 
+    expect(red).to be > 200
   end
 end
 
