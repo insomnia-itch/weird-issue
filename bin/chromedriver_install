@@ -6,14 +6,14 @@ set -euo pipefail
 
 sudo apt-get update -y
 
-CHROME_DRIVER_VERSION=133.0.6943.141
+CHROME_DRIVER_VERSION=134.0.6998.165
+CHROME_PATH="/usr/local/chrome"
+CHROMEDRIVER_PATH="/usr/local/chromedriver"
+sudo mkdir -p "$CHROME_PATH" "$CHROMEDRIVER_PATH"
 
 # Install Chrome and Chromedriver
-echo "y" | sudo npx @puppeteer/browsers install chrome@${CHROME_DRIVER_VERSION} --install-deps
-echo "y" | sudo npx @puppeteer/browsers install chromedriver@${CHROME_DRIVER_VERSION}
+echo "y" | sudo npx @puppeteer/browsers install chrome@${CHROME_DRIVER_VERSION} --install-deps --path="$CHROME_PATH"
+echo "y" | sudo npx @puppeteer/browsers install chromedriver@${CHROME_DRIVER_VERSION} --path="$CHROMEDRIVER_PATH"
 
-sudo mv chrome /usr/local/ 
-sudo ln -sf /usr/local/chrome/linux-${CHROME_DRIVER_VERSION}/chrome-linux64/chrome /usr/local/bin/google-chrome
-
-sudo mv chromedriver /usr/local/ 
-sudo ln -sf /usr/local/chromedriver/linux-${CHROME_DRIVER_VERSION}/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+sudo ln -sf ${CHROME_PATH}/linux-${CHROME_DRIVER_VERSION}/chrome-linux64/chrome /usr/local/bin/google-chrome
+sudo ln -sf ${CHROMEDRIVER_PATH}/linux-${CHROME_DRIVER_VERSION}/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
