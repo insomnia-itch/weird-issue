@@ -4,36 +4,15 @@
 
 set -euo pipefail
 
-echo "Installing Chrome and Chromedriver..."
+sudo apt-get update -y
 
-# Update package list
-sudo apt-get update
+CHROME_DRIVER_VERSION=134.0.6998.165
 
-# Install dependencies
-sudo apt-get install -y wget unzip libxss1
+sudo npx @puppeteer/browsers install chrome@${CHROME_DRIVER_VERSION} --install-deps -y
+sudo npx @puppeteer/browsers install chromedriver@${CHROME_DRIVER_VERSION} -y
 
-# Install Chrome if not installed
-if ! command -v google-chrome &> /dev/null; then
-  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
-  rm ./google-chrome-stable_current_amd64.deb
-fi
+sudo mv chrome /usr/local/ 
+sudo ln -s /usr/local/chrome/linux-${CHROME_DRIVER_VERSION}/chrome-linux64/chrome /usr/local/bin/google-chrome
 
-# Get Chrome version
-CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d. -f1)
-
-# Download matching chromedriver version
-wget -q "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_114" -O chrome_version
-DRIVER_VERSION=$(cat chrome_version)
-wget -q "https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip"
-unzip -q chromedriver_linux64.zip
-
-# Install chromedriver
-sudo mv chromedriver /usr/local/bin/
-sudo chmod +x /usr/local/bin/chromedriver
-
-# Clean up
-rm chrome_version chromedriver_linux64.zip
-
-echo "Chrome version: $(google-chrome --version)"
-echo "Chromedriver version: $(chromedriver --version)"
+sudo mv chromedriver /usr/local/ 
+sudo ln -s /usr/local/chromedriver/linux-${CHROME_DRIVER_VERSION}/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
