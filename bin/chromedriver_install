@@ -6,7 +6,7 @@ set -euo pipefail
 
 sudo apt-get update -y
 
-CHROME_DRIVER_VERSION=134.0.6998.165
+CHROME_DRIVER_VERSION=132.0.6834.159
 CHROME_PATH="/usr/local/chrome"
 CHROMEDRIVER_PATH="/usr/local/chromedriver"
 sudo mkdir -p "$CHROME_PATH" "$CHROMEDRIVER_PATH"
