@@ -7,13 +7,18 @@ set -euo pipefail
 sudo apt-get update -y
 
 CHROME_DRIVER_VERSION=132.0.6834.159
-CHROME_PATH="/usr/local/chrome"
-CHROMEDRIVER_PATH="/usr/local/chromedriver"
-sudo mkdir -p "$CHROME_PATH" "$CHROMEDRIVER_PATH"
 
 # Install Chrome and Chromedriver
-echo "y" | sudo npx @puppeteer/browsers install chrome@${CHROME_DRIVER_VERSION} --install-deps --path="$CHROME_PATH"
-echo "y" | sudo npx @puppeteer/browsers install chromedriver@${CHROME_DRIVER_VERSION} --path="$CHROMEDRIVER_PATH"
+echo "y" | sudo npx @puppeteer/browsers install chrome@${CHROME_DRIVER_VERSION} --install-deps --path="$INSTALL_PATH"
+echo "y" | sudo npx @puppeteer/browsers install chromedriver@${CHROME_DRIVER_VERSION} --path="$INSTALL_PATH"
 
-sudo ln -sf ${CHROME_PATH}/linux-${CHROME_DRIVER_VERSION}/chrome-linux64/chrome /usr/local/bin/google-chrome
-sudo ln -sf ${CHROMEDRIVER_PATH}/linux-${CHROME_DRIVER_VERSION}/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+# If /etc/environment does not contain ENV, write and reload
+if ! grep -q "SE_BROWSER_PATH" /etc/environment; then
+  echo "======= appending browser ENV to /etc/environment ========="
+  sudo chmod 777 /etc/environment
+
+  sudo echo 'BROWSER="chrome"' >> /etc/environment
+  sudo echo 'SE_BROWSER_PATH="./tmp/chrome/linux-132.0.6834.159/chrome-linux64/chrome"' >> /etc/environment
+
+  source /etc/environment
+fi
