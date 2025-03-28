@@ -2,23 +2,23 @@
 # Script to install Chrome and matching chromedriver at the system level for Linux
 # This script is called by chromedriver_check when JS tests are detected
 
-set -euo pipefail
-
-sudo apt-get update -y
+# sudo apt-get update -y
 
 CHROME_DRIVER_VERSION=132.0.6834.159
 
 # Install Chrome and Chromedriver
-echo "y" | sudo npx @puppeteer/browsers install chrome@${CHROME_DRIVER_VERSION} --install-deps --path="$INSTALL_PATH"
-echo "y" | sudo npx @puppeteer/browsers install chromedriver@${CHROME_DRIVER_VERSION} --path="$INSTALL_PATH"
+# echo "y" | sudo npx @puppeteer/browsers install chrome@${CHROME_DRIVER_VERSION} --install-deps --path="$INSTALL_PATH"
+# echo "y" | sudo npx @puppeteer/browsers install chromedriver@${CHROME_DRIVER_VERSION} --path="$INSTALL_PATH"
 
 # If /etc/environment does not contain ENV, write and reload
 if ! grep -q "SE_BROWSER_PATH" /etc/environment; then
-  echo "======= appending browser ENV to /etc/environment ========="
+  echo "========= appending browser ENV variables to /etc/environment ========="
   sudo chmod 777 /etc/environment
 
   sudo echo 'BROWSER="chrome"' >> /etc/environment
-  sudo echo 'SE_BROWSER_PATH="./tmp/chrome/linux-132.0.6834.159/chrome-linux64/chrome"' >> /etc/environment
+  sudo echo 'SE_BROWSER_PATH="/workspace/photogram-stimulus/tmp/chrome/linux-132.0.6834.159/chrome-linux64/chrome"' >> /etc/environment
 
   source /etc/environment
+  echo $BROWSER
+  echo $SE_BROWSER_PATH
 fi
