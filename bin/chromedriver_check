@@ -31,7 +31,8 @@ if check_for_js_tests
     puts "\n== JavaScript tests found, but chromedriver is already installed. Skipping installation. =="
   else
     puts "\n== JavaScript tests found and chromedriver not detected. Running installation... =="
-    system "bin/chromedriver_install"
+    system("bash -c 'bin/chromedriver_install'")
+    system("bash -c 'source /etc/environment'")
   end
 else
   puts "\n== No JavaScript tests found, skipping chromedriver installation =="
